@@ -34,18 +34,27 @@ class _HomeState extends State<Home> {
   late double euro;
 
   void _realChanged(String text) {
+    if (text == "") {
+      text = "0";
+    }
     double real = double.parse(text);
     dolarController.text = (real / dolar).toStringAsFixed(2);
     euroController.text = (real / euro).toStringAsFixed(2);
   }
 
   void _dolarChanged(String text) {
+    if (text == "") {
+      text = "0";
+    }
     double dolar = double.parse(text);
     realController.text = (dolar * this.dolar).toStringAsFixed(2);
     euroController.text = (dolar * this.dolar / euro).toStringAsFixed(2);
   }
 
   void _euroChanged(String text) {
+    if (text == "") {
+      text = "0";
+    }
     double euro = double.parse(text);
     realController.text = (euro * this.euro).toStringAsFixed(2);
     dolarController.text = (euro * this.euro / dolar).toStringAsFixed(2);
@@ -92,6 +101,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         Icon(Icons.monetization_on,
                             size: 150.0, color: Colors.amber),
+                        Divider(),
                         buildTextField(
                             "Reais", "R\$", realController, _realChanged),
                         Divider(),
